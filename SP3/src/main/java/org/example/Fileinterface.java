@@ -10,5 +10,5 @@ public interface Fileinterface {
     public void saveUserData(ArrayList<User> users);
 
 
-    public ArrayList<String> readMediaData(String filePath, int size);
+    public ArrayList<String> readMediaData(String filePath);
 }
