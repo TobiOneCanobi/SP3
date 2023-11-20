@@ -22,16 +22,9 @@ public class FileIO implements Fileinterface {
             String s = scan.nextLine() + "\n";
             userData.add(s);
         }
-
-        }
-
         catch (Exception e){
-
             System.out.println("User information not found");
-
         }
-
-
         return userData;
     }
 
