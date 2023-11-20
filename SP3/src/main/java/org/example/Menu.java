@@ -1,6 +1,6 @@
 package org.example;
 
-public class Menu {
+public class MainMenu {
 
 
     public void searchMedia(){
