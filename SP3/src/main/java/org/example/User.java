@@ -1,29 +1,43 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User {
+    private String username;
+    private String password;
+    private ArrayList<Objects>watchedMedia;
+    private ArrayList<Objects>savedMedia;
 
-    String username;
 
-    String password;
-    ArrayList<String> watchedMedia;
-    ArrayList<String> savedMedia;
+    public User(String username,String password) {
+        this.username = username;
+        this.password = password;
+        this.watchedMedia = new ArrayList<>();
+        this.savedMedia = new ArrayList<>();
 
-    public String getUsername(){
-        return this.username;
     }
 
-    public String getPassword(){
-        return this.password;
+    public void addToWatchedMedia(Objects a){
+        watchedMedia.add(a);
+    }
+    public void addToSavedMedia(Objects a){
+        savedMedia.add(a);
     }
 
-    public ArrayList<String> getWatchedMedia(){
-
-        return this.watchedMedia;
+    public String getUsername() {
+        return username;
     }
 
-    public ArrayList<String> getSavedMedia(){
-        return this.savedMedia;
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<Objects> getWatchedMedia() {
+        return watchedMedia;
+    }
+
+    public ArrayList<Objects> getSavedMedia() {
+        return savedMedia;
     }
 }
