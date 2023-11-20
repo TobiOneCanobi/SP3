@@ -3,7 +3,7 @@ package org.example;
 import java.io.File;
 import java.util.ArrayList;
 
-public class FileIO implements FIleInterface {
+public class FileIO implements Fileinterface {
 
 
     @Override
