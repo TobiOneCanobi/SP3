@@ -2,7 +2,12 @@ package org.example;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FileIO implements Fileinterface {
@@ -28,23 +33,37 @@ public class FileIO implements Fileinterface {
     }
 
     @Override
-    public void saveUserData(ArrayList<User> users) {
-
+    public void saveUserData(User currentUser) {
+    Scanner scan = new Scanner("SP3/User.txt");
         try{
-
-            FileWriter writer = new FileWriter("SP3/src/main/java/org/example/User.txt");
-            writer.write("username,password" + "\n");
-            for(User u : users){
-                String dataToSave = u.getUsername() + "," + u.getPassword();
-                writer.write(dataToSave + "\n");
-
+            FileWriter writer = new FileWriter("SP3/User.txt",true);
+            //writer.write("username,password" + "\n");
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                if (line.isBlank()) {
+                    writer.write(currentUser.getUsername() +", "+ currentUser.getPassword());
+                    writer.flush();
+                } else {
+                    writer.write(line);
+                    writer.flush();
+                }
             }
-
+                //writer.write(currentUser.getUsername() +", "+ currentUser.getPassword() +"\n");
+            scan.close();
             writer.close();
 
-        } catch(Exception e) {
 
+        } catch(Exception e) {
             System.out.println("Data can't be written into file");
+            /*try {
+                Files.move(
+                        Paths.get("User.txt.tmp"),
+                        Paths.get("User.txt"),
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }*/
         }
 
     }

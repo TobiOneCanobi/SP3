@@ -45,6 +45,7 @@ public class Login {
             if (passWord.equals(users.get(userName))) {
                 ui.displayMessage("logging you in");
                 tester();
+                User currentUser = new User(userName,passWord);
                 //menu.welcome(); start funkion i menu skal blive kaldt her
             } else if (passWord.equalsIgnoreCase("Q")) {
                 loginOrCreate();
@@ -74,6 +75,8 @@ public class Login {
             }
             String passWord = scan.next();
             users.put(userName, passWord);
+            User currentUser = new User(userName,passWord);
+            io.saveUserData(currentUser);
             ui.displayMessage("registration successful, logging you in");
             System.out.println(users); //Tester
             //noget med filewriter for at skrive det nye login i database
