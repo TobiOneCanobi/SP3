@@ -2,7 +2,12 @@ package org.example;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FileIO implements Fileinterface {
@@ -10,42 +15,55 @@ public class FileIO implements Fileinterface {
 
     @Override
     public ArrayList<String> readUserData(String filePath) {
-
         ArrayList<String> userData = new ArrayList<>();
-
         File file = new File(filePath);
 
         try {
             Scanner scan = new Scanner(file);
-            scan.nextLine();
+            scan.nextLine(); //skip header
             while (scan.hasNextLine()) {
                 String s = scan.nextLine() + "\n";
                 userData.add(s);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             System.out.println("User information not found");
         }
         return userData;
     }
 
     @Override
-    public void saveUserData(ArrayList<User> users) {
-
-        try {
-
-            FileWriter writer = new FileWriter("users.txt");
-            writer.write("username,password" + "\n");
-            for (User u : users) {
-                String dataToSave = u.getUsername() + "," + u.getPassword();
-                writer.write(dataToSave + "\n");
-
+    public void saveUserData(User currentUser) {
+    Scanner scan = new Scanner("SP3/User.txt");
+        try{
+            FileWriter writer = new FileWriter("SP3/User.txt",true);
+            //writer.write("username,password" + "\n");
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                if (line.isBlank()) {
+                    writer.write(currentUser.getUsername() +", "+ currentUser.getPassword());
+                    writer.flush();
+                } else {
+                    writer.write(line);
+                    writer.flush();
+                }
             }
-
+                //writer.write(currentUser.getUsername() +", "+ currentUser.getPassword() +"\n");
+            scan.close();
             writer.close();
 
-        } catch (Exception e) {
 
+        } catch(Exception e) {
             System.out.println("Data can't be written into file");
+            /*try {
+                Files.move(
+                        Paths.get("User.txt.tmp"),
+                        Paths.get("User.txt"),
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }*/
         }
 
     }
@@ -54,20 +72,21 @@ public class FileIO implements Fileinterface {
     public ArrayList<String> readMediaData(String filePath) {
 
 
+
         ArrayList<String> mediaData = new ArrayList<>();
         File file = new File(filePath);
 
-        try {
+        try{
             Scanner scan = new Scanner(file);
             scan.nextLine();
-            while (scan.hasNextLine()) {
-                String s = scan.nextLine() + "\n";
+            while(scan.hasNextLine()){
+                String s = scan.nextLine() +"\n";
 
                 mediaData.add(s);
 
 
             }
-        } catch (Exception e) {
+        }catch(Exception e){
 
             System.out.println("Data not found");
 

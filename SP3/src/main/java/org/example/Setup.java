@@ -9,12 +9,13 @@ public class Setup {
 
 
     public void setup() {
-        ArrayList<String> data = io.readUserData("src/User.txt");
+        ArrayList<String> data = io.readUserData("SP3/User.txt"); //
 
         for (String s : data) {
             String[] row = s.split(",");
             String userName = row[0].trim();
             String passWord = row[1].trim();
+
             registerUser(userName, passWord);
 
         }
