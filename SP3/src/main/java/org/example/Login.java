@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Login {
     private TextUI ui = new TextUI();
-    private FileIo io = new FileIo();
+    private FileIO io = new FileIO();
     private Scanner scan = new Scanner(System.in);
     HashMap<String, String> users = Setup.users;
     ;

@@ -10,17 +10,16 @@ public class FileIO implements Fileinterface {
 
     @Override
     public ArrayList<String> readUserData(String filePath) {
-
         ArrayList<String> userData = new ArrayList<>();
-
         File file = new File(filePath);
 
-        try{
-        Scanner scan = new Scanner(file);
-        scan.nextLine();
-        while(scan.hasNextLine()){
-            String s = scan.nextLine() + "\n";
-            userData.add(s);
+        try {
+            Scanner scan = new Scanner(file);
+            scan.nextLine(); //skip header
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine() + "\n";
+                userData.add(s);
+            }
         }
         catch (Exception e){
             System.out.println("User information not found");
@@ -33,7 +32,7 @@ public class FileIO implements Fileinterface {
 
         try{
 
-            FileWriter writer = new FileWriter("users.txt");
+            FileWriter writer = new FileWriter("SP3/src/main/java/org/example/User.txt");
             writer.write("username,password" + "\n");
             for(User u : users){
                 String dataToSave = u.getUsername() + "," + u.getPassword();

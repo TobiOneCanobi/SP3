@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Setup {
-    FileIo io = new FileIo();
+    FileIO io = new FileIO();
 
     public static HashMap<String,String> users = new HashMap<>();
 
 
     public void setup() {
-        ArrayList<String> data = io.readUserData("src/User.txt");
+        ArrayList<String> data = io.readUserData("SP3/src/main/java/org/example/User.txt");
 
         for (String s : data) {
             String[] row = s.split(",");

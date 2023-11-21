@@ -10,7 +10,7 @@ public class Main {
 
         FileIO io = new FileIO();
        // System.out.println(io.readUserData("users.txt"));
-        System.out.println(io.readMediaData("100bedstefilm.txt"));
+       // System.out.println(io.readMediaData("100bedstefilm.txt"));
 
     }
 }
