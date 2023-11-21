@@ -1,5 +1,4 @@
 package org.example;
-
 import java.awt.*;
 
 import java.util.HashMap;
@@ -7,70 +6,92 @@ import java.util.Scanner;
 
 public class Login {
     private TextUI ui = new TextUI();
-    private FileIO io = new FileIO();
+    private FileIo io = new FileIo();
     private Scanner scan = new Scanner(System.in);
-
-    HashMap <String,String> users = new HashMap<>();
-
+    HashMap<String, String> users = Setup.users;
+    ;
     //MainMenu menu = new MainMenu();
 
 
-    public void tester(){
-        users.put("Peter","123");
-        users.put("Janas","Janas");
-        System.out.println(users);
+    public void tester() {
+        //System.out.println("done");
     }
-    public void loginOrCreate(){
-        tester();
-        ui.displayMessage("Welcome to the streaming website Chill,\ntype login or register to continue");
+
+    public void loginOrCreate() {
+        ui.displayMessage("Welcome to the streaming website Chill," +
+                "\ntype login or register to continue, press q to return");
         String response = scan.nextLine();
 
-        if (response.equalsIgnoreCase("Login")){
-            ui.displayMessage("type Username and then Password to continue");
+        if (response.equalsIgnoreCase("Login")) {
+            ui.displayMessage("type Username");
             login();
-        }
-        else if (response.equalsIgnoreCase("register")){
-            ui.displayMessage("Create a Username and then Password to continue");
+        } else if (response.equalsIgnoreCase("register")) {
+            ui.displayMessage("Create a Username");
             register();
-        }
-        else {
+        } else {
             ui.displayMessage("invalid input");
             loginOrCreate();
         }
     }
 
-    public void login(){
-        String userName = scan.next();
-        String passWord = scan.next();
+    public void login() {
+        String userName = scan.nextLine();
 
-        // tror den checker alles value men skal kun check den value der hÃ¸rer til key
-        if(users.containsKey(userName)&& users.containsValue(passWord)){
-            ui.displayMessage("logging you in");
-            //menu.welcome(); start funkion i menu skal blive kaldt her
-        } else if (userName.equalsIgnoreCase("Q")||passWord.equalsIgnoreCase("Q")) {
+        if (users.containsKey(userName)) {
+            ui.displayMessage("type in your password");
+            String passWord = scan.nextLine();
+
+
+            if (passWord.equals(users.get(userName))) {
+                ui.displayMessage("logging you in");
+                tester();
+                //menu.welcome(); start funkion i menu skal blive kaldt her
+            } else if (passWord.equalsIgnoreCase("Q")) {
+                loginOrCreate();
+            } else {
+                System.out.println("Error try again or q to go back");
+                login();
+            }
+        } else if (userName.equalsIgnoreCase("Q")) {
             loginOrCreate();
-
         } else {
             ui.displayMessage("Username or Password is wrong try again");
             login();
         }
     }
+
     public void register() {
-        String userName = scan.next();
-        String passWord = scan.next();
-        //String input = scan.nextLine();
+        String userName = scan.nextLine();
         if (users.containsKey(userName)) {
             ui.displayMessage("username already taken try again");
             register();
-        } else if (userName.equalsIgnoreCase("Q")||passWord.equalsIgnoreCase("Q")) {
+        } else if (userName.equalsIgnoreCase("Q")) {
             loginOrCreate();
-        }
-        else {
-            users.put(userName,passWord);
+        } else {
+            ui.displayMessage("Choose a Password");
+            if (userName.equalsIgnoreCase("Q")) {
+                loginOrCreate();
+            }
+            String passWord = scan.next();
+            users.put(userName, passWord);
             ui.displayMessage("registration successful, logging you in");
-            //menu.welcome(); start funkion i menu skal blive kaldt her
             System.out.println(users); //Tester
+            //noget med filewriter for at skrive det nye login i database
+            //menu.welcome(); start funkion i menu skal blive kaldt her
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
