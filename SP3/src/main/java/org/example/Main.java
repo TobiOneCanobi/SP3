@@ -6,11 +6,13 @@ public class Main {
         Login login = new Login();
 
         setup.setup();
-        login.loginOrCreate();
+        //login.loginOrCreate();
 
         FileIO io = new FileIO();
        // System.out.println(io.readUserData("users.txt"));
-        System.out.println(io.readMediaData("100bedstefilm.txt"));
+        //System.out.println(io.readMediaData("100bedstefilm.txt"));
+
+
 
     }
 }

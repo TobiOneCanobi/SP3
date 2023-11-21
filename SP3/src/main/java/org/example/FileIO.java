@@ -15,14 +15,14 @@ public class FileIO implements Fileinterface {
 
         File file = new File(filePath);
 
-        try{
-        Scanner scan = new Scanner(file);
-        scan.nextLine();
-        while(scan.hasNextLine()){
-            String s = scan.nextLine() + "\n";
-            userData.add(s);
-        }
-        catch (Exception e){
+        try {
+            Scanner scan = new Scanner(file);
+            scan.nextLine();
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine() + "\n";
+                userData.add(s);
+            }
+        } catch (Exception e) {
             System.out.println("User information not found");
         }
         return userData;
@@ -31,11 +31,11 @@ public class FileIO implements Fileinterface {
     @Override
     public void saveUserData(ArrayList<User> users) {
 
-        try{
+        try {
 
             FileWriter writer = new FileWriter("users.txt");
             writer.write("username,password" + "\n");
-            for(User u : users){
+            for (User u : users) {
                 String dataToSave = u.getUsername() + "," + u.getPassword();
                 writer.write(dataToSave + "\n");
 
@@ -43,7 +43,7 @@ public class FileIO implements Fileinterface {
 
             writer.close();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
 
             System.out.println("Data can't be written into file");
         }
@@ -54,21 +54,20 @@ public class FileIO implements Fileinterface {
     public ArrayList<String> readMediaData(String filePath) {
 
 
-
         ArrayList<String> mediaData = new ArrayList<>();
         File file = new File(filePath);
 
-        try{
+        try {
             Scanner scan = new Scanner(file);
             scan.nextLine();
-            while(scan.hasNextLine()){
-                String s = scan.nextLine() +"\n";
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine() + "\n";
 
                 mediaData.add(s);
 
 
             }
-        }catch(Exception e){
+        } catch (Exception e) {
 
             System.out.println("Data not found");
 

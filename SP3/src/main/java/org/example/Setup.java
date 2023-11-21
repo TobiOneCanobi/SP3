@@ -1,11 +1,11 @@
 package org.example;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.*;
 
 public class Setup {
-    FileIo io = new FileIo();
+    FileIO io = new FileIO();
 
-    public static HashMap<String,String> users = new HashMap<>();
+    public static HashMap<String, String> users = new HashMap<>();
 
 
     public void setup() {
@@ -19,11 +19,44 @@ public class Setup {
 
         }
         System.out.println(users); //Tester
+
+        ArrayList<String> mediaData = io.readMediaData("100bedstefilm.txt");
+
+        ArrayList<String> genreList = new ArrayList<>();
+
+        for (String s : mediaData) {
+
+            String[] row = s.split(";");
+            String title = row[0].trim();
+            int release = Integer.parseInt(row[1].trim());
+
+            //String genre = Arrays.toString(row[2].trim().split(","));
+
+            ArrayList<String> genreRow = new ArrayList<>(Arrays.asList(row[2].split(",")));
+
+            String dot = row[3].trim().replace(",", ".");
+
+            double rating = Double.parseDouble(dot);
+
+            Movie m = new Movie(title, release, genreRow, rating);
+
+            System.out.println(m);
+
+
+
+
+
+
+
+
+        }
+
+
     }
 
-    private void registerUser(String userName, String passWord){
+    private void registerUser(String userName, String passWord) {
         //User u = new User(userName,passWord);
-        users.put(userName,passWord);
+        users.put(userName, passWord);
         //users.put(u.toString(),"");
         //Skal der laves user objects??
     }
