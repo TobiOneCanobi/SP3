@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Series extends Media {
 
-    private int runTime;
-    private int season;
+    private String runTime;
+    private String season;
 
-    private int episode;
+    private String episode;
 
-    public Series(String title, int runTime, ArrayList<String> genre, double rating, int season, int episode) {
+    public Series(String title, String runTime, ArrayList<String> genre, double rating, String season,String episode) {
         super(title, genre, rating);
 
         this.runTime = runTime;
@@ -17,18 +17,18 @@ public class Series extends Media {
         this.episode = episode;
     }
 
-    public int getRunTime() {
+    public String getRunTime() {
 
 
         return this.runTime;
     }
 
-    public int getSeason() {
+    public String getSeason() {
 
         return this.season;
     }
 
-    public int getEpisode() {
+    public String getEpisode() {
 
         return this.episode;
     }
@@ -36,6 +36,7 @@ public class Series extends Media {
 
     @Override
     public String toString() {
-        return null;
+
+        return "Title: " + getTitle() + "\n" + "Runtime: " + getRunTime() + "\n" + "Genre: " + getGenre() + "\n" + "Rating: " + getRating() + "\n" + "Season: " + getSeason() + "\n" + "Episodes: " + getEpisode() + "\n";
     }
 }
