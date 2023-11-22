@@ -60,7 +60,7 @@ public class Setup {
 
     private void loadMovies() {
 
-        ArrayList<String> movieData = io.readMediaData("Textdata/100bedstefilm.txt");
+        ArrayList<String> movieData = io.readMediaData("SP3/Textdata/100bedstefilm.txt");
 
 
         for (String s : movieData) {
@@ -109,7 +109,7 @@ public class Setup {
     private void loadSeries() {
 
 
-        ArrayList<String> seriesData = io.readMediaData("SP3/100bedsteserier.txt");
+        ArrayList<String> seriesData = io.readMediaData("SP3/Textdata/100bedsteserier.txt");
 
         for (String s : seriesData) {
 
