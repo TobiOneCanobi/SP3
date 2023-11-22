@@ -9,7 +9,7 @@ public class Setup {
 
 
     public void setup() {
-        ArrayList<String> data = io.readUserData("SP3/User.txt"); //
+        ArrayList<String> data = io.readUserData("Textdata/User.txt"); //
 
         for (String s : data) {
             String[] row = s.split(",");
@@ -21,7 +21,7 @@ public class Setup {
         }
         System.out.println(users); //Tester
 
-        ArrayList<String> mediaData = io.readMediaData("100bedstefilm.txt");
+        ArrayList<String> mediaData = io.readMediaData("Textdata/100bedstefilm.txt");
 
         ArrayList<String> genreList = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class Setup {
 
             Movie m = new Movie(title, release, genreRow, rating);
 
-            System.out.println(m);
+
 
 
 
