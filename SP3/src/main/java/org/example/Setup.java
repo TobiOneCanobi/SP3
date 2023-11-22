@@ -5,21 +5,14 @@ import java.util.*;
 public class Setup {
 
     TextUI ui = new TextUI();
-
-    private ArrayList<Movie> movies;
-
-    public Setup() {
-        this.movies = new ArrayList<>();
-    }
-
+    private ArrayList<Movie> movies = new ArrayList<>();
 
     FileIO io = new FileIO();
-
     public static HashMap<String, String> users = new HashMap<>();
 
 
     public void setup() {
-        ArrayList<String> data = io.readUserData("SP3/User.txt"); //
+        ArrayList<String> data = io.readUserData("Textdata/User.txt"); //
 
         for (String s : data) {
             String[] row = s.split(",");
@@ -31,7 +24,7 @@ public class Setup {
         }
         System.out.println(users); //Tester
 
-        ArrayList<String> mediaData = io.readMediaData("100bedstefilm.txt");
+        ArrayList<String> mediaData = io.readMediaData("Textdata/100bedstefilm.txt");
 
 
         for (String s : mediaData) {
@@ -46,16 +39,9 @@ public class Setup {
 
             double rating = Double.parseDouble(dot);
 
-
             registerMovie(title, release, genreRow, rating);
-
-
-
         }
-
-        displayMovies();
-
-
+       // displayMovies();
     }
 
     private void registerMovie(String title, int release, ArrayList<String> genre, double rating) {
@@ -63,8 +49,6 @@ public class Setup {
         Movie m = new Movie(title, release, genre, rating);
 
         movies.add(m);
-
-
     }
 
     private void displayMovies(){
@@ -90,5 +74,9 @@ public class Setup {
         users.put(userName, passWord);
         //users.put(u.toString(),"");
         //Skal der laves user objects??
+    }
+
+    public ArrayList<Movie> getMovies() {
+        return movies;
     }
 }

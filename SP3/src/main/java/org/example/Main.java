@@ -7,8 +7,8 @@ public class Main {
         MainMenu menu = new MainMenu();
 
         setup.setup();
-        //login.loginOrCreate();
-        menu.welcome();
+        login.loginOrCreate();
+
         FileIO io = new FileIO();
        // System.out.println(io.readUserData("users.txt"));
         //System.out.println(io.readMediaData("100bedstefilm.txt"));
