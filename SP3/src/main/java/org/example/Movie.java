@@ -23,7 +23,7 @@ public class Movie extends Media {
     }
 @Override
     public String toString() {
-        return "Movie name: " + getTitle() + " Genre: " + getGenre() + " releaseDate: " + getRelease() + " Rating: " + getRating();
+        return "Title: " + getTitle() + "\n" +" Genre: " + getGenre() + "\n" +" Release year: " + getRelease() + "\n" + " Rating: " + getRating() +"\n";
     }
 
 
