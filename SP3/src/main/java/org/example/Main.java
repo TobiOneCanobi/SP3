@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Setup setup = new Setup();
         Login login = new Login();
-        MainMenu menu = new MainMenu();
+        //MainMenu menu = new MainMenu();
 
         setup.setup();
-        login.loginOrCreate();
+       // login.loginOrCreate();
 
         FileIO io = new FileIO();
        // System.out.println(io.readUserData("users.txt"));

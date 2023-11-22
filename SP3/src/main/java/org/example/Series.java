@@ -9,7 +9,7 @@ public class Series extends Media {
 
     private String episode;
 
-    public Series(String title, String runTime, ArrayList<String> genre, double rating, String season,String episode) {
+    public Series(String title, String runTime, ArrayList<String> genre, double rating, String season, String episode) {
         super(title, genre, rating);
 
         this.runTime = runTime;
@@ -36,7 +36,6 @@ public class Series extends Media {
 
     @Override
     public String toString() {
-
         return "Title: " + getTitle() + "\n" + "Runtime: " + getRunTime() + "\n" + "Genre: " + getGenre() + "\n" + "Rating: " + getRating() + "\n" + "Season: " + getSeason() + "\n" + "Episodes: " + getEpisode() + "\n";
     }
-}
+    }
