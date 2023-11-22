@@ -9,12 +9,12 @@ public class Login {
     private FileIO io = new FileIO();
     private Scanner scan = new Scanner(System.in);
     HashMap<String, String> users = Setup.users;
-    ;
-    //MainMenu menu = new MainMenu();
+    private User currentUser;
+    MainMenu menu = new MainMenu();
 
 
     public void tester() {
-        //System.out.println("done");
+        System.out.println(users); //Tester
     }
 
     public void loginOrCreate() {
@@ -46,7 +46,7 @@ public class Login {
                 ui.displayMessage("logging you in");
                 tester();
                 User currentUser = new User(userName,passWord);
-                //menu.welcome(); start funkion i menu skal blive kaldt her
+                menu.welcome(currentUser);
             } else if (passWord.equalsIgnoreCase("Q")) {
                 loginOrCreate();
             } else {
@@ -76,12 +76,13 @@ public class Login {
             String passWord = scan.next();
             users.put(userName, passWord);
             User currentUser = new User(userName,passWord);
-            io.saveUserData(currentUser);
             ui.displayMessage("registration successful, logging you in");
-            System.out.println(users); //Tester
-            //noget med filewriter for at skrive det nye login i database
-            //menu.welcome(); start funkion i menu skal blive kaldt her
+            menu.welcome(currentUser);
         }
+
+    }
+    public User getCurrentUser(){
+        return currentUser;
     }
 }
 

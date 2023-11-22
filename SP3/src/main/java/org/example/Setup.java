@@ -4,20 +4,15 @@ import java.util.*;
 
 public class Setup {
 
-
+    TextUI ui = new TextUI();
     private ArrayList<Movie> movies = new ArrayList<>();
 
-    private ArrayList<Series> series = new ArrayList<>();
-
     FileIO io = new FileIO();
-
-    TextUI ui = new TextUI();
-
     public static HashMap<String, String> users = new HashMap<>();
 
 
     public void setup() {
-        ArrayList<String> data = io.readUserData("SP3/User.txt"); //
+        ArrayList<String> data = io.readUserData("Textdata/User.txt"); //
 
         for (String s : data) {
             String[] row = s.split(",");
@@ -29,41 +24,10 @@ public class Setup {
         }
         System.out.println(users); //Tester
 
-
-        //loadMovies();
-        loadSeries();
+        ArrayList<String> mediaData = io.readMediaData("Textdata/100bedstefilm.txt");
 
 
-    }
-
-
-    private void registerMovie(String title, int release, ArrayList<String> genre, double rating) {
-
-        Movie m = new Movie(title, release, genre, rating);
-
-        movies.add(m);
-
-
-    }
-
-    private void displayMovies() {
-        String m = "THE ENTIRE MOVIE COLLECTION:\n\n";
-
-        for (Movie movies : movies) {
-
-            m = m.concat(movies.toString() + "\n");
-
-        }
-
-        ui.displayMessage(m);
-    }
-
-    private void loadMovies() {
-
-        ArrayList<String> movieData = io.readMediaData("100bedstefilm.txt");
-
-
-        for (String s : movieData) {
+        for (String s : mediaData) {
 
             String[] row = s.split(";");
             String title = row[0].trim();
@@ -71,75 +35,38 @@ public class Setup {
 
             ArrayList<String> genreRow = new ArrayList<>(Arrays.asList(row[2].split(",")));
 
-            String commaReplacer = row[3].trim().replace(",", ".");
+            String dot = row[3].trim().replace(",", ".");
 
-            double rating = Double.parseDouble(commaReplacer);
+            double rating = Double.parseDouble(dot);
 
             registerMovie(title, release, genreRow, rating);
-
-
         }
-
-        displayMovies();
-
+       // displayMovies();
     }
 
-    private void registerSeries(String title, String runTime, ArrayList<String> genre, double rating, String season, String episode) {
+    private void registerMovie(String title, int release, ArrayList<String> genre, double rating) {
 
-        Series s = new Series(title, runTime, genre, rating, season, episode);
+        Movie m = new Movie(title, release, genre, rating);
 
-        series.add(s);
-
+        movies.add(m);
     }
 
-    private void displaySeries() {
+    private void displayMovies(){
+        String s = "THE ENTIRE MOVIE COLLECTION:\n\n";
 
-        String s = "THE ENTIRE SERIES COLLECTION:\n\n";
+        for(Movie movies : movies){
 
-        for (Series series : series) {
-
-            s = s.concat(series.toString() + "\n");
+            s = s.concat(movies.toString() + "\n");
 
         }
 
         ui.displayMessage(s);
+    }
+
+    private void displaySeries(){
 
     }
 
-    private void loadSeries() {
-
-
-        ArrayList<String> seriesData = io.readMediaData("100bedsteserier.txt");
-
-        for (String s : seriesData) {
-
-            String[] row = s.split(";");
-            String title = row[0].trim();
-            String runTime = row[1].trim();
-            ArrayList<String> genreRow = new ArrayList<>(Arrays.asList(row[2].split(",")));
-            String commaReplacer = row[3].trim().replace(",", ".");
-            double rating = Double.parseDouble(commaReplacer);
-
-
-            String[] seasonAndEpisode = row[4].split(",");
-            for (String sae : seasonAndEpisode) {
-                String[] divider = sae.trim().split("-");
-                String season = divider[0].trim();
-                String episode = divider[1].trim();
-
-
-                registerSeries(title, runTime, genreRow, rating, season, episode);
-
-
-            }
-
-
-        }
-
-        displaySeries();
-
-
-    }
 
 
     private void registerUser(String userName, String passWord) {
@@ -147,5 +74,9 @@ public class Setup {
         users.put(userName, passWord);
         //users.put(u.toString(),"");
         //Skal der laves user objects??
+    }
+
+    public ArrayList<Movie> getMovies() {
+        return movies;
     }
 }

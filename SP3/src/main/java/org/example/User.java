@@ -1,12 +1,12 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private String username;
     private String password;
-    private ArrayList<Objects>watchedMedia;
+
+    private ArrayList<Media>watchedMedia;
     private ArrayList<Objects>savedMedia;
 
 
@@ -18,11 +18,11 @@ public class User {
 
     }
 
-    public void addToWatchedMedia(Objects a){
-        watchedMedia.add(a);
+    public void addToWatchedMedia(Media media){
+        watchedMedia.add(media);
     }
-    public void addToSavedMedia(Objects a){
-        savedMedia.add(a);
+    public void addToSavedMedia(Objects media) {
+        savedMedia.add(media);
     }
 
     public String getUsername() {
@@ -33,7 +33,7 @@ public class User {
         return password;
     }
 
-    public ArrayList<Objects> getWatchedMedia() {
+    public ArrayList<Media> getWatchedMedia() {
         return watchedMedia;
     }
 

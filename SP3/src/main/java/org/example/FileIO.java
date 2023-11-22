@@ -34,9 +34,9 @@ public class FileIO implements Fileinterface {
 
     @Override
     public void saveUserData(User currentUser) {
-    Scanner scan = new Scanner("SP3/User.txt");
+        Scanner scan = new Scanner("Textdata/User.txt");
         try{
-            FileWriter writer = new FileWriter("SP3/User.txt",true);
+            FileWriter writer = new FileWriter("Textdata/User.txt",true);
             //writer.write("username,password" + "\n");
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
@@ -48,25 +48,17 @@ public class FileIO implements Fileinterface {
                     writer.flush();
                 }
             }
-                //writer.write(currentUser.getUsername() +", "+ currentUser.getPassword() +"\n");
+            //writer.write(currentUser.getUsername() +", "+ currentUser.getPassword() +"\n");
             scan.close();
             writer.close();
 
-
         } catch(Exception e) {
             System.out.println("Data can't be written into file");
-            /*try {
-                Files.move(
-                        Paths.get("User.txt.tmp"),
-                        Paths.get("User.txt"),
-                        StandardCopyOption.REPLACE_EXISTING
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }*/
         }
 
     }
+
+
 
     @Override
     public ArrayList<String> readMediaData(String filePath) {
