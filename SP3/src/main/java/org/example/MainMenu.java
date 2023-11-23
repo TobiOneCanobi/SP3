@@ -1,8 +1,10 @@
 package org.example;
 
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class MainMenu  {
+public class MainMenu {
     TextUI ui = new TextUI();
     Setup setup = new Setup();
     //Login login;
@@ -33,11 +35,59 @@ public class MainMenu  {
             default:
                 ui.displayMessage("error try again");
                 welcome(currentUser);
+
         }
     }
 
-    public void searchMedia(User currentUser){
-        System.out.println("search for a media now");
+    public void searchMedia(User currentUser) {
+
+        /*
+        ArrayList<String> movieData = io.readMediaData("Textdata/100bedstefilm.txt");
+        ArrayList<String> seriesData = io.readMediaData("Textdata/100bedsteserier.txt");
+
+        ArrayList<String> movieTitle = new ArrayList<>();
+        ArrayList<String> seriesTitle = new ArrayList<>();
+
+        for (String s : movieData) {
+            String[] row = s.split(";");
+            movieTitle.add(row[0].trim());
+        }
+
+        for (String s : seriesData) {
+            String[] row = s.split(";");
+            seriesTitle.add(row[0].trim());
+        }
+
+        movieTitle.addAll(seriesTitle);
+        System.out.println(movieTitle);
+        System.out.println("Please search for a movie or series.");
+        String searchForMedia = scan.nextLine();
+
+        if (movieTitle.contains(searchForMedia)) {
+            System.out.println(searchForMedia + " is now playing." + "\n" + "Thanks for watching " + searchForMedia + ".");
+
+        } else {
+            System.out.println("Media not found. Please search again or browse movie genres.");
+            searchMedia(currentUser);
+
+        }
+        */
+
+
+        setup.getMovies();
+        setup.getSeries();
+
+        System.out.println(setup.getMovies());
+        System.out.println("Please search for a movie or series.");
+        String searchForMedia = scan.nextLine();
+
+        if (setup.getMovies().contains(searchForMedia)) {
+            System.out.println(searchForMedia + " now playing." + "\n" + "Thanks for watching " + searchForMedia + ".");
+        } else {
+            System.out.println("The media you searched for wasn't found. Please search again or browse movie genres.");
+            searchMedia(currentUser);
+
+        }
 
     }
 
@@ -47,7 +97,8 @@ public class MainMenu  {
 
     public void checkViewedMedia(User currentUser){
         System.out.println("here is your viewed media");
-
+        currentUser.addToWatchedMedia(it);
+        System.out.println(currentUser.getWatchedMedia());
     }
 
     public void checkSavedMedia(User currentUser){
