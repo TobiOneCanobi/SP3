@@ -38,4 +38,9 @@ public class Series extends Media {
     public String toString() {
         return "Title: " + getTitle() + "\n" + "Runtime: " + getRunTime() + "\n" + "Genre: " + getGenre() + "\n" + "Rating: " + getRating() + "\n" + "Season: " + getSeason() + "\n" + "Episodes: " + getEpisode() + "\n";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return false;
     }
+}

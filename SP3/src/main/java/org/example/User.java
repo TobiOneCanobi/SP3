@@ -5,9 +5,8 @@ import java.util.*;
 public class User {
     private String username;
     private String password;
-
     private ArrayList<Media>watchedMedia;
-    private ArrayList<Objects>savedMedia;
+    private ArrayList<Media>savedMedia;
 
 
     public User(String username,String password) {
@@ -21,7 +20,7 @@ public class User {
     public void addToWatchedMedia(Media media){
         watchedMedia.add(media);
     }
-    public void addToSavedMedia(Objects media) {
+    public void addToSavedMedia(Media media) {
         savedMedia.add(media);
     }
 
@@ -37,7 +36,8 @@ public class User {
         return watchedMedia;
     }
 
-    public ArrayList<Objects> getSavedMedia() {
+    public ArrayList<Media> getSavedMedia() {
         return savedMedia;
     }
+
 }

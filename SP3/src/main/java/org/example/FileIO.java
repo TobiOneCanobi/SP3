@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class FileIO implements Fileinterface {
-
+User user;
 
     @Override
     public ArrayList<String> readUserData(String filePath) {
@@ -55,8 +55,37 @@ public class FileIO implements Fileinterface {
         } catch(Exception e) {
             System.out.println("Data can't be written into file");
         }
-
     }
+    public void createUserFolder(User user) {
+        // Create a folder with the username
+        String userDataPath = "UserData";
+        File userFolder = new File(userDataPath,user.getUsername());
+        if (!userFolder.exists()) {
+            userFolder.mkdir();
+        }
+
+        // Create watchedmedialist text file
+        createTextFile(userFolder, "watchedmedialist.txt", user.getWatchedMedia());
+
+        // Create savedmedialist text file
+        createTextFile(userFolder, "savedmedialist.txt", user.getSavedMedia());
+    }
+
+    public void createTextFile(File folder, String fileName, ArrayList<Media> dataList) {
+        File file = new File(folder, fileName);
+        try (FileWriter writer = new FileWriter(file)) {
+            for (Media data : dataList) {
+                // Write data to the file
+                writer.write(data.toString());
+                writer.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Other methods and getters/setters...
+
 
 
 
@@ -80,7 +109,7 @@ public class FileIO implements Fileinterface {
             }
         }catch(Exception e){
 
-            System.out.println("Data not found");
+            System.out.println("Media data not found");
 
 
         }
