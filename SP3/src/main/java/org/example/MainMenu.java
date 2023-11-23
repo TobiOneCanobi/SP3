@@ -4,16 +4,12 @@ import java.util.*;
 
 public class MainMenu  {
     TextUI ui = new TextUI();
-    //Login login = new Login();
-    Scanner scan = new Scanner(System.in);
-    ArrayList<String> testgenre = new ArrayList<>(); // tester
-
-    Movie it = new Movie("it",1999,testgenre,9.1); // tester
-    HashMap<User, ArrayList<Objects>> hashMapWatchedMedia = new HashMap<>();
     Setup setup = new Setup();
+    //Login login;
+    Scanner scan = new Scanner(System.in);
+    FileIO io = new FileIO();
 
     public void welcome(User currentUser){
-        testgenre.add("action");
     ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
             "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
             "\n4: Check your saved movie & series.\n5: Save and exit.");
@@ -37,25 +33,21 @@ public class MainMenu  {
             default:
                 ui.displayMessage("error try again");
                 welcome(currentUser);
-
         }
     }
 
     public void searchMedia(User currentUser){
-        System.out.println("search media now");
+        System.out.println("search for a media now");
 
     }
 
     public void searchGenre(User currentUser){
         System.out.println("search genre now");
-        //setup.getMovies(); tester
-
     }
 
     public void checkViewedMedia(User currentUser){
         System.out.println("here is your viewed media");
-        currentUser.addToWatchedMedia(it);
-        System.out.println(currentUser.getWatchedMedia());
+
     }
 
     public void checkSavedMedia(User currentUser){
@@ -63,6 +55,10 @@ public class MainMenu  {
     }
     public void saveAndExit(User currentUser){
         System.out.println("saving and exiting");
+        //currentUser.addToWatchedMedia();
+        //currentUser.addToWatchedMedia();
+        io.createUserFolder(currentUser);
+        System.out.println("done");
     }
 
 }

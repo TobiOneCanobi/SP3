@@ -32,6 +32,7 @@ abstract class Media {
 
     public abstract String toString();
 
+    public abstract boolean equals(Object obj);
 
 
 
