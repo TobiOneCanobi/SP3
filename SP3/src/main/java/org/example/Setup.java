@@ -15,9 +15,8 @@ public class Setup {
 
     public static HashMap<String, String> users = new HashMap<>();
 
-
     public void setup() {
-        ArrayList<String> data = io.readUserData("SP3/User.txt"); //
+        ArrayList<String> data = io.readUserData("SP3/Textdata/User.txt"); //
 
         for (String s : data) {
             String[] row = s.split(",");
@@ -31,7 +30,8 @@ public class Setup {
 
 
         //loadMovies();
-        loadSeries();
+        //loadSeries();
+
 
 
     }
@@ -46,7 +46,7 @@ public class Setup {
 
     }
 
-    private void displayMovies() {
+    void displayMovies() {
         String m = "THE ENTIRE MOVIE COLLECTION:\n\n";
 
         for (Movie movies : movies) {
@@ -58,7 +58,7 @@ public class Setup {
         ui.displayMessage(m);
     }
 
-    private void loadMovies() {
+    void loadMovies() {
 
         ArrayList<String> movieData = io.readMediaData("SP3/Textdata/100bedstefilm.txt");
 
@@ -80,7 +80,7 @@ public class Setup {
 
         }
 
-        displayMovies();
+        //displayMovies();
 
     }
 
@@ -106,7 +106,7 @@ public class Setup {
 
     }
 
-    private void loadSeries() {
+    void loadSeries() {
 
 
         ArrayList<String> seriesData = io.readMediaData("SP3/Textdata/100bedsteserier.txt");
@@ -136,16 +136,21 @@ public class Setup {
 
         }
 
-        displaySeries();
-
+        //displaySeries();
 
     }
-
-
-    private void registerUser(String userName, String passWord) {
+            private void registerUser(String userName, String passWord) {
         //User u = new User(userName,passWord);
         users.put(userName, passWord);
         //users.put(u.toString(),"");
         //Skal der laves user objects??
+    }
+
+    public ArrayList<Movie> getMovies() {
+        return movies;
+    }
+
+    public ArrayList<Series> getSeries() {
+        return series;
     }
 }

@@ -1,10 +1,8 @@
 package org.example;
 
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class MainMenu {
+public class MainMenu  {
     TextUI ui = new TextUI();
     Setup setup = new Setup();
     //Login login;
@@ -72,8 +70,7 @@ public class MainMenu {
 
         }
         */
-
-
+        /*
         setup.getMovies();
         setup.getSeries();
 
@@ -88,6 +85,34 @@ public class MainMenu {
             searchMedia(currentUser);
 
         }
+        */
+        setup.loadMovies();
+        setup.loadSeries();
+
+        ArrayList<Movie> movies = setup.getMovies();
+        ArrayList<Series> series = setup.getSeries();
+
+        ArrayList<Media> mediaList = new ArrayList<>();
+        mediaList.addAll(movies);
+        mediaList.addAll(series);
+
+        ui.displayMessage("Please search for a movie or series.");
+        String searchForMedia = scan.nextLine().toLowerCase();
+
+        boolean found = false;
+
+        for (Media media : mediaList) {
+            if (media.getTitle().toLowerCase().equals(searchForMedia)) {
+                found = true;
+                displayOptions(media,currentUser);
+                break;
+            }
+        }
+
+        if (!found) {
+            ui.displayMessage("The media you searched for wasn't found. Please search again or browse movie genres.");
+            searchMedia(currentUser);
+        }
 
     }
 
@@ -97,19 +122,48 @@ public class MainMenu {
 
     public void checkViewedMedia(User currentUser){
         System.out.println("here is your viewed media");
-        currentUser.addToWatchedMedia(it);
-        System.out.println(currentUser.getWatchedMedia());
+
     }
 
     public void checkSavedMedia(User currentUser){
         System.out.println("here is your saved media");
+        currentUser.addToSavedMedia(null);
+        System.out.println(currentUser.getSavedMedia());
     }
     public void saveAndExit(User currentUser){
         System.out.println("saving and exiting");
-        //currentUser.addToWatchedMedia();
-        //currentUser.addToWatchedMedia();
-        io.createUserFolder(currentUser);
-        System.out.println("done");
+
+
     }
+
+    private void displayOptions(Media media , User currentUser) {
+        ui.displayMessage("Found " + media.getTitle() + "\nOptions:" +
+                "\n1: Watch " + media.getTitle() + "\n2: Save " + media.getTitle()
+                + "\n3: Search for another media");
+
+        String input = scan.nextLine();
+        switch (input) {
+            case "1":
+                ui.displayMessage(media.getTitle() + " is now playing");
+                currentUser.addToWatchedMedia(media);
+                break;
+            case "2":
+                currentUser.addToSavedMedia(media);
+                ui.displayMessage(media.getTitle() + " has been added to saved media");
+                break;
+            case "3":
+                searchMedia(currentUser);
+                break;
+            default:
+                ui.displayMessage("Invalid option, Please try again.");
+                displayOptions(media, currentUser);
+
+        }
+        //currentUser.addToWatchedMedia();
+        //currentUser.addToWatchedMedia();
+        //io.createUserFolder(currentUser);
+        //System.out.println("done");
+    }
+
 
 }
