@@ -4,12 +4,23 @@ import java.util.*;
 
 public class MainMenu  {
     TextUI ui = new TextUI();
-    Setup setup = new Setup();
-    //Login login;
+    Setup setup;
+    Login login;
+    private HashMap<String, String> users;
     Scanner scan = new Scanner(System.in);
     FileIO io = new FileIO();
+public MainMenu(Setup setup){
+    this.setup = setup;
 
+
+}
+    public void setLogin(Login login) {
+        this.login = login;
+        this.users = login.getUsers();
+    }
     public void welcome(User currentUser){
+        System.out.println(users);
+        //setup.loadUser();
     ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
             "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
             "\n4: Check your saved movie & series.\n5: Save and exit.");
@@ -55,8 +66,8 @@ public class MainMenu  {
     }
     public void saveAndExit(User currentUser){
         System.out.println("saving and exiting");
-        //currentUser.addToWatchedMedia();
-        //currentUser.addToWatchedMedia();
+       //System.out.println(users);
+        io.saveUserData("Textdata/User.txt",users);
         io.createUserFolder(currentUser);
         System.out.println("done");
     }

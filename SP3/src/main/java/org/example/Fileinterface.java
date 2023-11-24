@@ -9,7 +9,7 @@ public interface Fileinterface {
     public ArrayList<String> readUserData(String filePath);
 
 
-    public void saveUserData(User currentUser);
+    public void saveUserData(String Filepath,HashMap<String, String>Users);
     public void createUserFolder(User user);
 
     public void createTextFile(File folder, String fileName, ArrayList<Media> dataList);
