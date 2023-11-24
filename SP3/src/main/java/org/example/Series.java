@@ -35,7 +35,8 @@ public class Series extends Media {
 
     @Override
     public String toString() {
-        return "Title: " + getTitle() + "\n" + "Runtime: " + getRunTime() + "\n" + "Genre: " + getGenre() + "\n" + "Rating: " + getRating() + "\n" + "Season: " + getSeason() + "\n" + "Episodes: " + getEpisode() + "\n";
+        return "Title: " + getTitle() + "\n" + "Runtime: " + getRunTime() + "\n" + "Genre: " + getGenre() +
+                "\n" + "Rating: " + getRating() + "\n" + "Season: " + getSeason() + "\n" + "Episodes: " + getEpisode()+"\n";
     }
 
     @Override

@@ -124,13 +124,11 @@ public class Setup {
             String passWord = row[1].trim();
 
             registerUser(userName, passWord);
-
         }
     }
 
     private void registerUser(String userName, String passWord) {
         users.put(userName, passWord);
-
     }
 
     public void searchMovieGenre() {
@@ -139,7 +137,6 @@ public class Setup {
         ui.displayMessage("These are some of the following genres: 'Action' 'Crime' 'Drama' 'Sport' 'Family' and more");
         ui.displayMessage("Please type a genre");
         String searchGenre = scan.nextLine();
-
         ArrayList<String> allGenre = new ArrayList<>();
 
         allGenre.add("Crime");
@@ -163,14 +160,6 @@ public class Setup {
         allGenre.add("Western");
         allGenre.add("Music");
 
-        if (!allGenre.contains(searchGenre)) {
-
-            ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
-            searchMovieGenre();
-        }
-
-
-        ui.displayMessage("These movies are available in the " + searchGenre + " genre" + "\n");
 
         boolean found = false;
         for (Movie genreMovie : movies) {
@@ -180,12 +169,13 @@ public class Setup {
                 if (searchGenre.equalsIgnoreCase(genre.trim())) {
                     System.out.println(genreMovie);
                     found = true;
+                    break;
                 }
             }
         }
-
         if (!found) {
             ui.displayMessage("The genre " + searchGenre + " does not exist");
+            searchMovieGenre();
         }
     }
 
@@ -195,7 +185,6 @@ public class Setup {
         ui.displayMessage("These are some of the following genres: 'Action' 'Crime' 'Drama' 'Sport' 'Family' and more");
         ui.displayMessage("Please type a genre");
         String searchGenre = scan.nextLine();
-
         ArrayList<String> allGenre = new ArrayList<>();
 
         allGenre.add("Talk-show");
@@ -220,14 +209,6 @@ public class Setup {
         allGenre.add("Romance");
         allGenre.add("Sport");
 
-        if (!allGenre.contains(searchGenre)) {
-
-            ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
-            searchSeriesGenre();
-        }
-
-        ui.displayMessage("These series are available in the " + searchGenre + " genre" + "\n");
-
         boolean found = false;
         for (Series genreSeries : series) {
             ArrayList<String> seriesGenres = genreSeries.getGenre();
@@ -235,13 +216,15 @@ public class Setup {
 
                 if (searchGenre.equalsIgnoreCase(genre.trim())) {
                     System.out.println(genreSeries);
-                    found = true;
 
+                    found = true;
+                    break;
                 }
             }
         }
         if (!found) {
             ui.displayMessage("The genre " + searchGenre + " does not exist");
+            searchSeriesGenre();
         }
     }
 

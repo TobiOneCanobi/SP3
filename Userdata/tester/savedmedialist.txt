@@ -1,0 +1,17 @@
+Title: ET
+Genre: [ Family,  Sci-fi]
+Release year: 1982
+Rating: 7.9
+
+Title: Yankee Doodle Dandy
+Genre: [ Biography,  Drama,  Musical]
+Release year: 1942
+Rating: 7.7
+
+Title: GLOW
+Runtime: 2017-
+Genre: [ Comedy,  Drama,  Sport]
+Rating: 8.2
+Season: 1
+Episodes: 10
+

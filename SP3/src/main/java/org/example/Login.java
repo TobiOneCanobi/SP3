@@ -24,9 +24,6 @@ public class Login {
         return users;
     }
 
-    public void tester() {
-        System.out.println(users); //Tester
-    }
 
     public void loginOrCreate() {
         ui.displayMessage("Welcome to the streaming website Chill," +
@@ -55,13 +52,12 @@ public class Login {
 
             if (passWord.equals(users.get(userName))) {
                 ui.displayMessage("logging you in");
-                tester();
                 User currentUser = new User(userName, passWord);
                 menu.welcome(currentUser);
             } else if (passWord.equalsIgnoreCase("Q")) {
                 loginOrCreate();
             } else {
-                System.out.println("Error try again or q to go back");
+                ui.displayMessage("Error try again or q to go back");
                 login();
             }
         } else if (userName.equalsIgnoreCase("Q")) {
