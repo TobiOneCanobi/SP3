@@ -1,2 +1,2 @@
-username,password
-tester, test
+tester,test
+Peter,Janas

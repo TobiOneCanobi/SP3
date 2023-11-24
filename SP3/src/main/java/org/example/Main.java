@@ -3,17 +3,9 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Setup setup = new Setup();
-        Login login = new Login();
-        MainMenu menu = new MainMenu();
-
+        //MainMenu menu = new MainMenu();
+       // Login login = new Login(setup);
         setup.setup();
-        login.loginOrCreate();
-
-       FileIO io = new FileIO();
-       // System.out.println(io.readUserData("users.txt"));
-        //System.out.println(io.readMediaData("100bedstefilm.txt"));
-
-
-
+        //login.loginOrCreate();
     }
 }

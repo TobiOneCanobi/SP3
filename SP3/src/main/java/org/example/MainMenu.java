@@ -2,21 +2,28 @@ package org.example;
 
 import java.util.*;
 
-public class MainMenu {
+public class MainMenu  {
     TextUI ui = new TextUI();
-    Setup setup = new Setup();
-    //Login login;
+    Setup setup;
+    Login login;
+    private HashMap<String, String> users;
     Scanner scan = new Scanner(System.in);
     FileIO io = new FileIO();
+public MainMenu(Setup setup){
+    this.setup = setup;
 
 
-
-    public void welcome(User currentUser) {
-        ui.displayMessage("Welcome " + currentUser.getUsername() + " These are your options, type the number assigned to the option" +
-                "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
-                "\n4: Check your saved movie & series.\n5: Save and exit.");
+}
+    public void setLogin(Login login) {
+        this.login = login;
+        this.users = login.getUsers();
+    }
+    public void welcome(User currentUser){
+    ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
+            "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
+            "\n4: Check your saved movie & series.\n5: Save and exit.");
         String input = scan.nextLine();
-        switch (input) {
+        switch(input) {
             case "1":
                 searchMedia(currentUser);
                 break;
@@ -88,8 +95,8 @@ public class MainMenu {
 
         }
         */
-        setup.loadMovies();
-        setup.loadSeries();
+        //setup.loadMovies();
+        //setup.loadSeries();
 
         ArrayList<Movie> movies = setup.getMovies();
         ArrayList<Series> series = setup.getSeries();
@@ -124,6 +131,7 @@ public class MainMenu {
 
             }
         }
+
         if (!found) {
             ui.displayMessage("The media you searched for wasn't found. Please search again or browse movie genres.");
             searchMedia(currentUser);
@@ -131,22 +139,25 @@ public class MainMenu {
 
     }
 
-    public void searchGenre(User currentUser) {
+    public void searchGenre(User currentUser){
         System.out.println("search genre now");
     }
 
-    public void checkViewedMedia(User currentUser) {
-        ui.displayMessage("here is your viewed media" + currentUser.getWatchedMedia());
+    public void checkViewedMedia(User currentUser){
+        System.out.println("here is your viewed media");
 
     }
 
-    public void checkSavedMedia(User currentUser) {
-        ui.displayMessage("here is your saved media" + currentUser.getSavedMedia());
+    public void checkSavedMedia(User currentUser){
+        System.out.println("here is your saved media");
+        currentUser.addToSavedMedia(null);
+        System.out.println(currentUser.getSavedMedia());
     }
-
-    public void saveAndExit(User currentUser) {
-       ui.displayMessage("saving and exiting");
+    public void saveAndExit(User currentUser){
+        System.out.println("saving and exiting");
+        io.saveUserData("Textdata/User.txt",users);
         io.createUserFolder(currentUser);
+        System.out.println("done");
 
     }
 
@@ -177,17 +188,15 @@ public class MainMenu {
                 searchMedia(currentUser);
                 break;
             default:
-                ui.displayMessage("Invalid option, Please try again.\n");
+                ui.displayMessage("Invalid option, Please try again.");
                 displayOptions(media, currentUser);
 
         }
-    }
-                //currentUser.addToWatchedMedia();
-                //currentUser.addToWatchedMedia();
-                //io.createUserFolder(currentUser);
-                //System.out.println("done");
+        //currentUser.addToWatchedMedia();
+        //currentUser.addToWatchedMedia();
+        //io.createUserFolder(currentUser);
+        //System.out.println("done");
+       //System.out.println(users);
+
+
 }
-
-
-
-
