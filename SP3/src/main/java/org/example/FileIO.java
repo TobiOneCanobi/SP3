@@ -58,7 +58,7 @@ User user;
     }
     public void createUserFolder(User user) {
         // Create a folder with the username
-        String userDataPath = "UserData";
+        String userDataPath = "SP3/Userdata";
         File userFolder = new File(userDataPath,user.getUsername());
         if (!userFolder.exists()) {
             userFolder.mkdir();

@@ -1,10 +1,10 @@
-Title: it
-Genre: [action]
-Release year: 1999
-Rating: 9.1
+Title: Rocky
+Genre: [ Drama,  Sport]
+Release year: 1976
+Rating: 8.1
 
-Title: Scream
-Genre: [action]
-Release year: 1999
-Rating: 9.1
+Title: Rocky
+Genre: [ Drama,  Sport]
+Release year: 1976
+Rating: 8.1
 

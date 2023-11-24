@@ -24,6 +24,8 @@ public class User {
         savedMedia.add(media);
     }
 
+    public void removeFromSavedMedia(Media media) {savedMedia.remove(media);}
+
     public String getUsername() {
         return username;
     }
