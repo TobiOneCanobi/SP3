@@ -83,7 +83,6 @@ public class Login {
             String passWord = scan.next();
             User currentUser = new User(userName, passWord);
             users.put(currentUser.getUsername(), currentUser.getPassword());
-            System.out.println(users);
             ui.displayMessage("registration successful, logging you in");
             menu.welcome(currentUser);
         }
