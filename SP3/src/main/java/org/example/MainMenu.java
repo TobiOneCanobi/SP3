@@ -94,8 +94,8 @@ public MainMenu(Setup setup){
 
         }
         */
-        setup.loadMovies();
-        setup.loadSeries();
+        //setup.loadMovies();
+        //setup.loadSeries();
 
         ArrayList<Movie> movies = setup.getMovies();
         ArrayList<Series> series = setup.getSeries();

@@ -37,7 +37,7 @@ public class Setup {
 
     private void loadMovies() {
 
-        ArrayList<String> movieData = io.readMediaData("SP3/Textdata/100bedstefilm.txt");
+        ArrayList<String> movieData = io.readMediaData("Textdata/100bedstefilm.txt");
 
 
         for (String s : movieData) {
@@ -75,7 +75,7 @@ public class Setup {
 
         }
 
-        ui.displayMessage(s);
+        ui.displayMessage(m);
 
     }
 
