@@ -8,10 +8,22 @@ public class Login {
     private TextUI ui = new TextUI();
     private FileIO io = new FileIO();
     private Scanner scan = new Scanner(System.in);
-    HashMap<String, String> users = Setup.users;
-    private User currentUser;
-    MainMenu menu = new MainMenu();
+    Setup setup;
+    private HashMap<String, String> users;
+    MainMenu menu;
+    public Login(Setup setup){
+        this.setup = setup;
+        this.users = setup.getUsers();
 
+    }
+
+    public void setMenu(MainMenu menu) {
+        this.menu = menu;
+    }
+
+    public HashMap<String, String> getUsers() {
+        return users;
+    }
 
     public void tester() {
         System.out.println(users); //Tester
@@ -45,7 +57,7 @@ public class Login {
             if (passWord.equals(users.get(userName))) {
                 ui.displayMessage("logging you in");
                 tester();
-                User currentUser = new User(userName,passWord);
+                User currentUser = new User(userName, passWord);
                 menu.welcome(currentUser);
             } else if (passWord.equalsIgnoreCase("Q")) {
                 loginOrCreate();
@@ -74,28 +86,15 @@ public class Login {
                 loginOrCreate();
             }
             String passWord = scan.next();
-            users.put(userName, passWord);
-            User currentUser = new User(userName,passWord);
+            User currentUser = new User(userName, passWord);
+            users.put(currentUser.getUsername(),currentUser.getPassword());
+            System.out.println(users);
             ui.displayMessage("registration successful, logging you in");
             menu.welcome(currentUser);
+
         }
 
     }
-    public User getCurrentUser(){
-        return currentUser;
-    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

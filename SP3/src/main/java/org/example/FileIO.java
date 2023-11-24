@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FileIO implements Fileinterface {
@@ -20,7 +22,7 @@ User user;
 
         try {
             Scanner scan = new Scanner(file);
-            scan.nextLine(); //skip header
+            //scan.nextLine(); //skip header
             while (scan.hasNextLine()) {
                 String s = scan.nextLine() + "\n";
                 userData.add(s);
@@ -32,28 +34,25 @@ User user;
         return userData;
     }
 
+
     @Override
-    public void saveUserData(User currentUser) {
-        Scanner scan = new Scanner("Textdata/User.txt");
+    public void saveUserData(String Filepath,HashMap<String, String>Users) {
+        //Scanner scan = new Scanner("Textdata/User.txt");
         try{
-            FileWriter writer = new FileWriter("Textdata/User.txt",true);
-            //writer.write("username,password" + "\n");
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                if (line.isBlank()) {
-                    writer.write(currentUser.getUsername() +", "+ currentUser.getPassword());
-                    writer.flush();
-                } else {
-                    writer.write(line);
-                    writer.flush();
-                }
+            File file = new File(Filepath);
+            BufferedWriter bf = new BufferedWriter(new FileWriter(file));
+
+            for (Map.Entry<String,String> entry : Users.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                bf.write(key + "," +value);
+                bf.newLine();
+                System.out.println("Tester Data has been written succesfully");
             }
-            //writer.write(currentUser.getUsername() +", "+ currentUser.getPassword() +"\n");
-            scan.close();
-            writer.close();
+            bf.close();
 
         } catch(Exception e) {
-            System.out.println("Data can't be written into file");
+            System.out.println("Userdata can't be written into file");
         }
     }
     public void createUserFolder(User user) {
@@ -83,11 +82,6 @@ User user;
             e.printStackTrace();
         }
     }
-
-    // Other methods and getters/setters...
-
-
-
 
     @Override
     public ArrayList<String> readMediaData(String filePath) {

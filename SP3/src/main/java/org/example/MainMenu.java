@@ -4,11 +4,20 @@ import java.util.*;
 
 public class MainMenu  {
     TextUI ui = new TextUI();
-    Setup setup = new Setup();
-    //Login login;
+    Setup setup;
+    Login login;
+    private HashMap<String, String> users;
     Scanner scan = new Scanner(System.in);
     FileIO io = new FileIO();
+public MainMenu(Setup setup){
+    this.setup = setup;
 
+
+}
+    public void setLogin(Login login) {
+        this.login = login;
+        this.users = login.getUsers();
+    }
     public void welcome(User currentUser){
     ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
             "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
@@ -33,7 +42,6 @@ public class MainMenu  {
             default:
                 ui.displayMessage("error try again");
                 welcome(currentUser);
-
         }
     }
 
@@ -132,7 +140,9 @@ public class MainMenu  {
     }
     public void saveAndExit(User currentUser){
         System.out.println("saving and exiting");
-
+        io.saveUserData("Textdata/User.txt",users);
+        io.createUserFolder(currentUser);
+        System.out.println("done");
 
     }
 
@@ -163,7 +173,8 @@ public class MainMenu  {
         //currentUser.addToWatchedMedia();
         //io.createUserFolder(currentUser);
         //System.out.println("done");
-    }
+       //System.out.println(users);
 
+    }
 
 }
