@@ -2,41 +2,48 @@ package org.example;
 
 import java.util.*;
 
-public class MainMenu  {
+public class MainMenu {
     TextUI ui = new TextUI();
     Setup setup;
     Login login;
     private HashMap<String, String> users;
     Scanner scan = new Scanner(System.in);
     FileIO io = new FileIO();
-public MainMenu(Setup setup){
-    this.setup = setup;
+
+    public MainMenu(Setup setup) {
+        this.setup = setup;
 
 
-}
+    }
+
     public void setLogin(Login login) {
         this.login = login;
         this.users = login.getUsers();
     }
-    public void welcome(User currentUser){
-    ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
-            "\n1: Search Media.\n2: Search Genre.\n3: Check your viewed movies & series." +
-            "\n4: Check your saved movie & series.\n5: Save and exit.");
+
+    public void welcome(User currentUser) {
+        ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
+                "\n1: Search media.\n2: Search movie genre.\n3: Search series genre \n4: Check your viewed movies & series." +
+                "\n5: Check your saved movie & series.\n6: Save and exit.");
         String input = scan.nextLine();
         switch(input) {
             case "1":
                 searchMedia(currentUser);
                 break;
             case "2":
-                searchGenre(currentUser);
+                searchMovieGenre(currentUser);
                 break;
             case "3":
+                searchSerieGenre(currentUser);
+                break;
+
+            case "4":
                 checkViewedMedia(currentUser);
                 break;
-            case "4":
+            case "5":
                 checkSavedMedia(currentUser);
                 break;
-            case "5":
+            case "6":
                 saveAndExit(currentUser);
                 break;
             default:
@@ -47,56 +54,6 @@ public MainMenu(Setup setup){
     }
 
     public void searchMedia(User currentUser) {
-
-        /*
-        ArrayList<String> movieData = io.readMediaData("Textdata/100bedstefilm.txt");
-        ArrayList<String> seriesData = io.readMediaData("Textdata/100bedsteserier.txt");
-
-        ArrayList<String> movieTitle = new ArrayList<>();
-        ArrayList<String> seriesTitle = new ArrayList<>();
-
-        for (String s : movieData) {
-            String[] row = s.split(";");
-            movieTitle.add(row[0].trim());
-        }
-
-        for (String s : seriesData) {
-            String[] row = s.split(";");
-            seriesTitle.add(row[0].trim());
-        }
-
-        movieTitle.addAll(seriesTitle);
-        System.out.println(movieTitle);
-        System.out.println("Please search for a movie or series.");
-        String searchForMedia = scan.nextLine();
-
-        if (movieTitle.contains(searchForMedia)) {
-            System.out.println(searchForMedia + " is now playing." + "\n" + "Thanks for watching " + searchForMedia + ".");
-
-        } else {
-            System.out.println("Media not found. Please search again or browse movie genres.");
-            searchMedia(currentUser);
-
-        }
-        */
-        /*
-        setup.getMovies();
-        setup.getSeries();
-
-        System.out.println(setup.getMovies());
-        System.out.println("Please search for a movie or series.");
-        String searchForMedia = scan.nextLine();
-
-        if (setup.getMovies().contains(searchForMedia)) {
-            System.out.println(searchForMedia + " now playing." + "\n" + "Thanks for watching " + searchForMedia + ".");
-        } else {
-            System.out.println("The media you searched for wasn't found. Please search again or browse movie genres.");
-            searchMedia(currentUser);
-
-        }
-        */
-        //setup.loadMovies();
-        //setup.loadSeries();
 
         ArrayList<Movie> movies = setup.getMovies();
         ArrayList<Series> series = setup.getSeries();
@@ -120,14 +77,13 @@ public MainMenu(Setup setup){
                 if (choice.equalsIgnoreCase("y")) {
                     searchMedia(currentUser);
                     break;
-                }
-                else if (choice.equalsIgnoreCase("m")) {
+                } else if (choice.equalsIgnoreCase("m")) {
                     welcome(currentUser);
                     break;
                 } else
                     ui.displayMessage("Thanks for using Chill");
-                    saveAndExit(currentUser);
-                    break;
+                saveAndExit(currentUser);
+                break;
 
             }
         }
@@ -139,23 +95,33 @@ public MainMenu(Setup setup){
 
     }
 
-    public void searchGenre(User currentUser){
-        System.out.println("search genre now");
+    public void searchMovieGenre(User currentUser){
+
+        setup.searchMovieGenre();
+
+
     }
 
-    public void checkViewedMedia(User currentUser){
+    public void searchSerieGenre(User currentUser){
+
+        setup.searchSeriesGenre();
+
+    }
+
+    public void checkViewedMedia(User currentUser) {
         System.out.println("here is your viewed media");
 
     }
 
-    public void checkSavedMedia(User currentUser){
+    public void checkSavedMedia(User currentUser) {
         System.out.println("here is your saved media");
         currentUser.addToSavedMedia(null);
         System.out.println(currentUser.getSavedMedia());
     }
-    public void saveAndExit(User currentUser){
+
+    public void saveAndExit(User currentUser) {
         System.out.println("saving and exiting");
-        io.saveUserData("Textdata/User.txt",users);
+        io.saveUserData("Textdata/User.txt", users);
         io.createUserFolder(currentUser);
         System.out.println("done");
 
@@ -169,7 +135,7 @@ public MainMenu(Setup setup){
         String input = scan.nextLine();
         switch (input) {
             case "1":
-                ui.displayMessage(media.getTitle() + " is now playing. " + media.getTitle() +  " has been added to watched media.");
+                ui.displayMessage(media.getTitle() + " is now playing. " + media.getTitle() + " has been added to watched media.");
                 currentUser.addToWatchedMedia(media);
                 break;
 
@@ -196,7 +162,8 @@ public MainMenu(Setup setup){
         //currentUser.addToWatchedMedia();
         //io.createUserFolder(currentUser);
         //System.out.println("done");
-       //System.out.println(users);
+        //System.out.println(users);
 
 
+    }
 }

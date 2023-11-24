@@ -142,6 +142,133 @@ public class Setup {
         //Skal der laves user objects??
     }
 
+    public void searchMovieGenre() {
+
+        Scanner scan = new Scanner(System.in);
+        ui.displayMessage("These are some of the following genres: 'Action' 'Crime' 'Drama' 'Sport' 'Family' and more");
+        ui.displayMessage("Please type a genre");
+        String searchGenre = scan.nextLine();
+
+        ArrayList<String> allGenre = new ArrayList<>();
+
+        allGenre.add("Crime");
+        allGenre.add("Drama");
+        allGenre.add("Biography");
+        allGenre.add("Sport");
+        allGenre.add("History");
+        allGenre.add("Romance");
+        allGenre.add("War");
+        allGenre.add("Mystery");
+        allGenre.add("Adventure");
+        allGenre.add("Family");
+        allGenre.add("Fantasy");
+        allGenre.add("Thriller");
+        allGenre.add("Horror");
+        allGenre.add("Film-Noir");
+        allGenre.add("Action");
+        allGenre.add("Sci-fi");
+        allGenre.add("Comedy");
+        allGenre.add("Musical");
+        allGenre.add("Western");
+        allGenre.add("Music");
+
+
+
+        if(!allGenre.contains(searchGenre)){
+
+
+            ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
+            searchMovieGenre();
+
+        }
+
+
+
+
+
+        ui.displayMessage("These movies are available in the " + searchGenre + " genre" + "\n");
+
+        boolean found = false;
+        for (Movie genreMovie : movies) {
+            ArrayList<String> movieGenres = genreMovie.getGenre();
+            for (String genre : movieGenres) {
+
+                if (searchGenre.equalsIgnoreCase(genre.trim())) {
+                    System.out.println(genreMovie);
+                    found = true;
+
+                }
+            }
+        }
+
+        if(!found){
+            ui.displayMessage("The genre " + searchGenre + " does not exist");
+        }
+    }
+
+    public void searchSeriesGenre(){
+
+        Scanner scan = new Scanner(System.in);
+        ui.displayMessage("These are some of the following genres: 'Action' 'Crime' 'Drama' 'Sport' 'Family' and more");
+        ui.displayMessage("Please type a genre");
+        String searchGenre = scan.nextLine();
+
+        ArrayList<String> allGenre = new ArrayList<>();
+
+        allGenre.add("Talk-show");
+        allGenre.add("Documentary");
+        allGenre.add("Crime");
+        allGenre.add("Drama");
+        allGenre.add("Action");
+        allGenre.add("Adventure");
+        allGenre.add("Drama");
+        allGenre.add("Comedy");
+        allGenre.add("Fantasy");
+        allGenre.add("Animation");
+        allGenre.add("Horror");
+        allGenre.add("Sci-fi");
+        allGenre.add("War");
+        allGenre.add("Thriller");
+        allGenre.add("Mystery");
+        allGenre.add("Biography");
+        allGenre.add("History");
+        allGenre.add("Family");
+        allGenre.add("Western");
+        allGenre.add("Romance");
+        allGenre.add("Sport");
+
+        if(!allGenre.contains(searchGenre)){
+
+
+            ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
+            searchSeriesGenre();
+
+        }
+
+
+
+        ui.displayMessage("These series are available in the " + searchGenre + " genre" + "\n");
+
+        boolean found = false;
+        for (Series genreSeries : series) {
+            ArrayList<String> seriesGenres = genreSeries.getGenre();
+            for (String genre : seriesGenres) {
+
+                if (searchGenre.equalsIgnoreCase(genre.trim())) {
+                    System.out.println(genreSeries);
+                    found = true;
+
+                }
+
+            }
+
+        }
+        if(!found){
+            ui.displayMessage("The genre " + searchGenre + " does not exist");
+        }
+
+    }
+
     public ArrayList<Movie> getMovies() {
         return movies;
     }
