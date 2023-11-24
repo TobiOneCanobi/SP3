@@ -10,6 +10,7 @@ public class Movie extends Media {
         super(title, genre, rating);
         this.release = release;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -22,8 +23,9 @@ public class Movie extends Media {
 
         return this.release;
     }
-@Override
+
+    @Override
     public String toString() {
-        return "Title: "+getTitle()+"\n"+"Genre: " + getGenre() +"\n" +"Release year: " + getRelease() + "\n" + "Rating: " + getRating() +"\n";
+        return "Title: " + getTitle() + "\n" + "Genre: " + getGenre() + "\n" + "Release year: " + getRelease() + "\n" + "Rating: " + getRating() + "\n";
     }
 }

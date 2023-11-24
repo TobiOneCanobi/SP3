@@ -12,8 +12,6 @@ public class MainMenu {
 
     public MainMenu(Setup setup) {
         this.setup = setup;
-
-
     }
 
     public void setLogin(Login login) {
@@ -22,11 +20,11 @@ public class MainMenu {
     }
 
     public void welcome(User currentUser) {
-        ui.displayMessage("Welcome " + currentUser.getUsername() +  " These are your options, type the number assigned to the option" +
+        ui.displayMessage("Welcome " + currentUser.getUsername() + " These are your options, type the number assigned to the option" +
                 "\n1: Search media.\n2: Search movie genre.\n3: Search series genre \n4: Check your viewed movies & series." +
                 "\n5: Check your saved movie & series.\n6: Save and exit.");
         String input = scan.nextLine();
-        switch(input) {
+        switch (input) {
             case "1":
                 searchMedia(currentUser);
                 break;
@@ -49,7 +47,6 @@ public class MainMenu {
             default:
                 ui.displayMessage("error try again");
                 welcome(currentUser);
-
         }
     }
 
@@ -84,7 +81,6 @@ public class MainMenu {
                     ui.displayMessage("Thanks for using Chill");
                 saveAndExit(currentUser);
                 break;
-
             }
         }
 
@@ -92,18 +88,14 @@ public class MainMenu {
             ui.displayMessage("The media you searched for wasn't found. Please search again or browse movie genres.");
             searchMedia(currentUser);
         }
-
     }
 
-    public void searchMovieGenre(User currentUser){
-
+    public void searchMovieGenre(User currentUser) {
         setup.searchMovieGenre();
 
-
     }
 
-    public void searchSerieGenre(User currentUser){
-
+    public void searchSerieGenre(User currentUser) {
         setup.searchSeriesGenre();
 
     }
@@ -124,7 +116,6 @@ public class MainMenu {
         io.saveUserData("Textdata/User.txt", users);
         io.createUserFolder(currentUser);
         System.out.println("done");
-
     }
 
     private void displayOptions(Media media, User currentUser) {
@@ -158,12 +149,5 @@ public class MainMenu {
                 displayOptions(media, currentUser);
 
         }
-        //currentUser.addToWatchedMedia();
-        //currentUser.addToWatchedMedia();
-        //io.createUserFolder(currentUser);
-        //System.out.println("done");
-        //System.out.println(users);
-
-
     }
 }

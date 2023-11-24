@@ -4,16 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class FileIO implements Fileinterface {
-User user;
+    User user;
 
     @Override
     public ArrayList<String> readUserData(String filePath) {
@@ -27,8 +24,7 @@ User user;
                 String s = scan.nextLine() + "\n";
                 userData.add(s);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("User information not found");
         }
         return userData;
@@ -36,29 +32,30 @@ User user;
 
 
     @Override
-    public void saveUserData(String Filepath,HashMap<String, String>Users) {
+    public void saveUserData(String Filepath, HashMap<String, String> Users) {
         //Scanner scan = new Scanner("Textdata/User.txt");
-        try{
+        try {
             File file = new File(Filepath);
             BufferedWriter bf = new BufferedWriter(new FileWriter(file));
 
-            for (Map.Entry<String,String> entry : Users.entrySet()) {
+            for (Map.Entry<String, String> entry : Users.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                bf.write(key + "," +value);
+                bf.write(key + "," + value);
                 bf.newLine();
                 System.out.println("Tester Data has been written succesfully");
             }
             bf.close();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Userdata can't be written into file");
         }
     }
+
     public void createUserFolder(User user) {
         // Create a folder with the username
         String userDataPath = "SP3/Userdata";
-        File userFolder = new File(userDataPath,user.getUsername());
+        File userFolder = new File(userDataPath, user.getUsername());
         if (!userFolder.exists()) {
             userFolder.mkdir();
         }
@@ -87,27 +84,20 @@ User user;
     public ArrayList<String> readMediaData(String filePath) {
 
 
-
         ArrayList<String> mediaData = new ArrayList<>();
         File file = new File(filePath);
 
-        try{
+        try {
             Scanner scan = new Scanner(file);
             scan.nextLine();
-            while(scan.hasNextLine()){
-                String s = scan.nextLine() +"\n";
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine() + "\n";
 
                 mediaData.add(s);
-
-
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
             System.out.println("Media data not found");
-
-
         }
-
         return mediaData;
     }
 }

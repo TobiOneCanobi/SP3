@@ -4,11 +4,8 @@ import java.util.ArrayList;
 
 abstract class Media {
 
-
     private String title;
-
     private ArrayList<String> genre;
-
     private double rating;
 
     public Media(String title, ArrayList<String> genre, double rating) {
@@ -33,9 +30,5 @@ abstract class Media {
     public abstract String toString();
 
     public abstract boolean equals(Object obj);
-
-
-
-
 
 }

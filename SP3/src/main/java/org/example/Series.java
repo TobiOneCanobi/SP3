@@ -19,7 +19,6 @@ public class Series extends Media {
 
     public String getRunTime() {
 
-
         return this.runTime;
     }
 

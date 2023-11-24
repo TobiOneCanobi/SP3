@@ -1,17 +1,16 @@
 package org.example;
-import java.awt.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Login {
     private TextUI ui = new TextUI();
-    private FileIO io = new FileIO();
     private Scanner scan = new Scanner(System.in);
     Setup setup;
     private HashMap<String, String> users;
     MainMenu menu;
-    public Login(Setup setup){
+
+    public Login(Setup setup) {
         this.setup = setup;
         this.users = setup.getUsers();
 
@@ -87,14 +86,11 @@ public class Login {
             }
             String passWord = scan.next();
             User currentUser = new User(userName, passWord);
-            users.put(currentUser.getUsername(),currentUser.getPassword());
+            users.put(currentUser.getUsername(), currentUser.getPassword());
             System.out.println(users);
             ui.displayMessage("registration successful, logging you in");
             menu.welcome(currentUser);
-
         }
-
     }
-
 }
 

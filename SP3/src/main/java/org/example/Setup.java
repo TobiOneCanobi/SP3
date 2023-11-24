@@ -13,21 +13,18 @@ public class Setup {
 
     private HashMap<String, String> users = new HashMap<>();
 
-    public Setup(){
-       this.login = new Login(this);
-       this.menu = new MainMenu(this);
-       this.login.setMenu(menu);
-       this.menu.setLogin(login);
+    public Setup() {
+        this.login = new Login(this);
+        this.menu = new MainMenu(this);
+        this.login.setMenu(menu);
+        this.menu.setLogin(login);
     }
+
     public void setup() {
 
         loadUser();
         loadMovies();
-        //System.out.println(movies);
         loadSeries();
-        //displayMovies();
-        //displaySeries();
-        //getMovies();
         login.loginOrCreate();
     }
 
@@ -58,7 +55,6 @@ public class Setup {
     }
 
 
-
     public void registerMovie(String title, int release, ArrayList<String> genre, double rating) {
 
         Movie m = new Movie(title, release, genre, rating);
@@ -68,15 +64,12 @@ public class Setup {
 
     private void displayMovies() {
         String m = "THE ENTIRE MOVIE COLLECTION:\n\n";
-        //System.out.println(movies);
         for (Movie movies : movies) {
 
             m = m.concat(movies.toString() + "\n");
 
         }
-
         ui.displayMessage(m);
-
     }
 
     public void loadSeries() {
@@ -101,7 +94,6 @@ public class Setup {
                 registerSeries(title, runTime, genreRow, rating, season, episode);
             }
         }
-
     }
 
     private void registerSeries(String title, String runTime, ArrayList<String> genre, double rating, String season, String episode) {
@@ -122,8 +114,9 @@ public class Setup {
         }
         ui.displayMessage(s);
     }
-    public void loadUser(){
-        ArrayList<String> data = io.readUserData("Textdata/User.txt"); //
+
+    public void loadUser() {
+        ArrayList<String> data = io.readUserData("Textdata/User.txt");
 
         for (String s : data) {
             String[] row = s.split(",");
@@ -133,13 +126,11 @@ public class Setup {
             registerUser(userName, passWord);
 
         }
-      //  System.out.println("tester i loadUser"+users); //Tester
     }
+
     private void registerUser(String userName, String passWord) {
-        //User u = new User(userName,passWord);
         users.put(userName, passWord);
-        //users.put(u.toString(),"");
-        //Skal der laves user objects??
+
     }
 
     public void searchMovieGenre() {
@@ -172,18 +163,11 @@ public class Setup {
         allGenre.add("Western");
         allGenre.add("Music");
 
-
-
-        if(!allGenre.contains(searchGenre)){
-
+        if (!allGenre.contains(searchGenre)) {
 
             ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
             searchMovieGenre();
-
         }
-
-
-
 
 
         ui.displayMessage("These movies are available in the " + searchGenre + " genre" + "\n");
@@ -196,17 +180,16 @@ public class Setup {
                 if (searchGenre.equalsIgnoreCase(genre.trim())) {
                     System.out.println(genreMovie);
                     found = true;
-
                 }
             }
         }
 
-        if(!found){
+        if (!found) {
             ui.displayMessage("The genre " + searchGenre + " does not exist");
         }
     }
 
-    public void searchSeriesGenre(){
+    public void searchSeriesGenre() {
 
         Scanner scan = new Scanner(System.in);
         ui.displayMessage("These are some of the following genres: 'Action' 'Crime' 'Drama' 'Sport' 'Family' and more");
@@ -237,15 +220,11 @@ public class Setup {
         allGenre.add("Romance");
         allGenre.add("Sport");
 
-        if(!allGenre.contains(searchGenre)){
-
+        if (!allGenre.contains(searchGenre)) {
 
             ui.displayMessage("This " + searchGenre + " genre do not exist, please type again\n");
             searchSeriesGenre();
-
         }
-
-
 
         ui.displayMessage("These series are available in the " + searchGenre + " genre" + "\n");
 
@@ -259,14 +238,11 @@ public class Setup {
                     found = true;
 
                 }
-
             }
-
         }
-        if(!found){
+        if (!found) {
             ui.displayMessage("The genre " + searchGenre + " does not exist");
         }
-
     }
 
     public ArrayList<Movie> getMovies() {
