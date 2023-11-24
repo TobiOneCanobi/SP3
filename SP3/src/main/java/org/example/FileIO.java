@@ -19,7 +19,6 @@ public class FileIO implements Fileinterface {
 
         try {
             Scanner scan = new Scanner(file);
-            //scan.nextLine(); //skip header
             while (scan.hasNextLine()) {
                 String s = scan.nextLine() + "\n";
                 userData.add(s);
@@ -33,7 +32,6 @@ public class FileIO implements Fileinterface {
 
     @Override
     public void saveUserData(String Filepath, HashMap<String, String> Users) {
-        //Scanner scan = new Scanner("Textdata/User.txt");
         try {
             File file = new File(Filepath);
             BufferedWriter bf = new BufferedWriter(new FileWriter(file));
@@ -43,7 +41,6 @@ public class FileIO implements Fileinterface {
                 String value = entry.getValue();
                 bf.write(key + "," + value);
                 bf.newLine();
-                System.out.println("Tester Data has been written succesfully");
             }
             bf.close();
 
@@ -54,7 +51,7 @@ public class FileIO implements Fileinterface {
 
     public void createUserFolder(User user) {
         // Create a folder with the username
-        String userDataPath = "SP3/Userdata";
+        String userDataPath = "Userdata";
         File userFolder = new File(userDataPath, user.getUsername());
         if (!userFolder.exists()) {
             userFolder.mkdir();
